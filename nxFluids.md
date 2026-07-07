@@ -12,7 +12,7 @@ PBD 求解器计算快，适合实时预览和中等规模流体。SPH 求解器
 
 ### 设置页（Section）
 
-设置页（Section）切换流体修改器（nxFluids）当前显示的主设置页。当前已覆盖的页签包括物体属性（Object Properties）、组（Groups Affected）、映射（Mapping）和衰减（Falloff）。FLIP/APIC 模式下额外包含显示（Display）页签。
+设置页（Section）切换流体修改器（nxFluids）当前显示的主设置页。当前已覆盖的页签包括物体属性（Object Properties）、混合器（Mixer）、组（Groups Affected）、映射（Mapping）和衰减（Falloff）。FLIP/APIC 模式下额外包含显示（Display）页签。
 
 ### 启用（Enabled）
 
@@ -25,6 +25,41 @@ PBD 求解器计算快，适合实时预览和中等规模流体。SPH 求解器
 ### 物体属性（Object Properties）
 
 物体属性（Object Properties）是一个页签，包含流体修改器（nxFluids）自身的通用属性设置，如启用（Enabled）和视口可见（Visible in Editor）。这些属性在所有求解器模式下都可用。
+
+### 混合器（Mixer）
+
+混合器（Mixer）是一个单独页签，用来按发射器（nxEmitter）或 nx 组（nxGroup）覆盖流体参数。
+
+它的作用是给某些特定来源单独指定一套流体参数，不直接改整个流体修改器（nxFluids）的全局解算：
+- 同一个流体修改器里，不同发射器可以有不同覆盖值
+- 也可以直接按组覆盖
+- 当发射器覆盖和组覆盖同时存在时，组覆盖优先
+
+适合的场景是：同一个流体域里同时有“稀一点的水”和“更黏的液体”，或者你想让某个组的粒子拥有更强的表面张力、不同的黏度或不同的颗粒稳定性。
+
+### 发射器 / 组（Emitters / Groups）
+
+发射器 / 组（Emitters / Groups）是混合器（Mixer）页签里的覆盖列表。
+
+列表里的每一项都指向一个发射器（nxEmitter）或 nx 组（nxGroup），并附带一套只对该来源生效的流体覆盖参数。
+
+### 活动发射器 / 组索引（Active Emitter / Group Index）
+
+活动发射器 / 组索引（Active Emitter / Group Index）表示当前在发射器 / 组（Emitters / Groups）列表里选中了哪一项。
+
+它本身不改变模拟，只决定下面正在编辑哪条覆盖记录。
+
+### 添加发射器 / 组（Add Emitter / Group）
+
+添加发射器 / 组（Add Emitter / Group）向混合器（Mixer）列表增加一个新的覆盖条目。
+
+新条目可以绑定到发射器（nxEmitter）或 nx 组（nxGroup）。如果两者都没有选，这条记录不会真正参与覆盖。
+
+### 对象（Object）
+
+对象（Object）是混合器列表某一项实际绑定的目标对象。
+
+它决定这一条覆盖到底作用在哪个发射器（nxEmitter）或哪个 nx 组（nxGroup）上。换对象，就等于把整套覆盖参数改派给另一个来源。
 
 ### 求解器（Solver）
 
@@ -111,6 +146,12 @@ PBD 求解器计算快，适合实时预览和中等规模流体。SPH 求解器
 
 - 液体（Liquid）：标准液体模拟，包含黏度、涡量、表面张力、压力等参数。
 - 颗粒（Granular）：颗粒材料模拟，界面在 SPH 模式下始终绘制颗粒（Granular）参数组。当前插件无法确认这些参数是否只在颗粒类型下生效，建议以实际模拟结果为准。
+
+### 静止密度（Rest Density）
+
+静止密度（Rest Density）出现在混合器（Mixer）的 SPH 覆盖项里。
+
+它定义这个覆盖来源在 SPH 解算里期望维持的基础密度。数值越高，粒子会更倾向于维持更高密度状态；数值越低，整体会更松一些。
 
 ### 平滑半径（SPH Smoothing Radius）
 
