@@ -35,7 +35,7 @@
 - 随时间改变数值，绝对方式（Change Value Over Time (Absolute)）：按绝对变化量随时间推进。
 - 随时间改变数值，相对方式（Change Value Over Time (Relative)）：按百分比随时间推进。
 - 设置数值（Set Value）：直接设置绝对值。
-- 随衰减设置（Set by Falloff (TODO)）：根据衰减值来控制结果，代码中仍标记为 TODO。
+- 随衰减设置（Set by Falloff）：根据衰减值来控制结果。
 - 按速度缩放（Scale by Speed）：根据粒子速度驱动变化。
 - 按加速度缩放（Scale by Acceleration）：根据粒子加速度驱动变化。
 - 按映射缩放（Scale by Map）：根据对象距离与顶点组权重映射变化。

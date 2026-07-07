@@ -549,6 +549,7 @@
 插件提供很多来源，例如：
 - 年龄（Age）
 - 速度（Speed）
+- 缩放（Scale）
 - 半径（Radius）
 - 质量（Mass）
 - 温度（Temperature）
