@@ -1,4 +1,4 @@
-# NeXus 中文帮助文档（更新时间2026.7.7）（补充：考虑重新编写，以让整个帮助文档更加符合“帮助文档”）
+# NeXus 中文帮助文档（更新时间2026.7.7）（https://github.com/geiniyiquan250/Nexux-fo-Blender-help-docs.git 新版文档）
 
 这个仓库整理的是 Blender 用 NeXus 插件的中文帮助文档。
 
